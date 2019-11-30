@@ -32,10 +32,10 @@ const GamesCarouselPage = ({ title, img, description }) => {
         </Grid>
         <Grid item xs={12} md={3}>
           <Box px={2} py={2} pt={7}>
-            <Typography variant="h5" component="h2" color="textPrimary">
+            <Typography variant="h4" component="h2" color="textPrimary">
               {title}
             </Typography>
-            <Typography variant="p" component="h2" color="textSecondary">
+            <Typography variant="h6" component="h2" color="textSecondary">
               {description}
             </Typography>
           </Box>
