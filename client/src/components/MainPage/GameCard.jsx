@@ -38,6 +38,7 @@ const GameCard = props => {
 
   //Setting the mini list visible on card hover and not otherwise
   const cardRef = useRef(null);
+  const miniListRef = useRef(null);
   const [miniListVisible, setMiniListVisible] = useState(false);
   useEffect(() => {
     cardRef.current.addEventListener("mouseenter", () => {
@@ -46,7 +47,13 @@ const GameCard = props => {
     cardRef.current.addEventListener("mouseleave", () => {
       setMiniListVisible(false);
     });
-  });
+  }, []);
+
+  useEffect(() => {
+    miniListRef.current.addEventListener("click", e => {
+      e.preventDefault(); //This is for disabling page change when clicking on the ignore or whitelist btns
+    });
+  }, []);
 
   return (
     <Card ref={cardRef} className={classes.card}>
@@ -70,13 +77,15 @@ const GameCard = props => {
           {price} $
         </Typography>
       </CardContent>
-      <CardMiniList
-        visible={miniListVisible}
-        ignored={ignored}
-        whitelisted={whitelisted}
-        handleIgnore={props.handleIgnore}
-        handleWhitelist={props.handleWhitelist}
-      />
+      <div ref={miniListRef}>
+        <CardMiniList
+          visible={miniListVisible}
+          ignored={ignored}
+          whitelisted={whitelisted}
+          handleIgnore={props.handleIgnore}
+          handleWhitelist={props.handleWhitelist}
+        />
+      </div>
     </Card>
   );
 };

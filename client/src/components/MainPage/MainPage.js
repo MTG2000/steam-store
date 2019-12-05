@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid } from "@material-ui/core";
+import { Container, Grid, Box } from "@material-ui/core";
 import GamesListContainer from "./GamesListContainer";
 import VisibilityFilters from "./VisibilityFilters";
 import GamesCarousel from "./GamesCarousel";
@@ -12,7 +12,8 @@ const MainPage = () => {
         <Grid item xs={12} md={10}>
           <GamesListContainer />
         </Grid>
-        <Grid item xs={12} md={2}>
+        <Box mt={{ xs: 10 }} />
+        <Grid item container justify="center" xs={12} md={2}>
           <VisibilityFilters />
         </Grid>
       </Grid>

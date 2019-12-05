@@ -18,7 +18,7 @@ import { connect } from "react-redux";
 const useStyles = makeStyles({
   root: props => ({
     backgroundColor: props.palette.primary.dark,
-    maxWidth: 500
+    maxWidth: 270
   })
 });
 

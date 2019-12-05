@@ -16,6 +16,7 @@ const initialState = {
 };
 
 const fetchGamesLabel = "fetch-games-label";
+const fetchGameLabel = "fetch-game-label";
 
 const gamesSlice = createSlice({
   name: "games",
@@ -24,6 +25,10 @@ const gamesSlice = createSlice({
   reducers: {
     SET_GAMES: (state, action) => {
       state.items = action.payload;
+      state.error = false;
+    },
+    SET_GAME: (state, action) => {
+      state.game = action.payload;
       state.error = false;
     },
     SET_FETCH_ERROR: (state, action) => {
@@ -35,6 +40,9 @@ const gamesSlice = createSlice({
           game.ignored = action.payload.ignored;
         return game;
       });
+      if (state.game.id === +action.payload.id) {
+        state.game.ignored = !state.game.ignored;
+      }
     },
     TOGGLE_WHITELIST: (state, action) => {
       state.items.map(game => {
@@ -42,6 +50,9 @@ const gamesSlice = createSlice({
           game.whitelisted = action.payload.whitelisted;
         return game;
       });
+      if (state.game.id === +action.payload.id) {
+        state.game.whitelisted = !state.game.whitelisted;
+      }
     },
     SET_GAMES_VISIBILITY_FILTER: (state, action) => {
       state.visibilityFilter = action.payload;
@@ -50,13 +61,19 @@ const gamesSlice = createSlice({
   extraReducers: {
     //Extra Reducers are reducers that wont have Auto-generated actions creaters and naming-prefix
     [API_START]: (state, action) => {
-      if (action.payload === fetchGamesLabel) {
+      if (
+        action.payload === fetchGamesLabel ||
+        action.payload === fetchGameLabel
+      ) {
         state.loading = true;
         state.error = false;
       }
     },
     [API_END]: (state, action) => {
-      if (action.payload === fetchGamesLabel) {
+      if (
+        action.payload === fetchGamesLabel ||
+        action.payload === fetchGameLabel
+      ) {
         state.loading = false;
       }
     }
@@ -69,6 +86,14 @@ export const FETCH_GAMES = () =>
     onSuccess: gamesSlice.actions.SET_GAMES,
     onFailure: gamesSlice.actions.SET_FETCH_ERROR,
     label: fetchGamesLabel
+  });
+
+export const FETCH_GAME = id =>
+  apiAction({
+    url: `/api/games/${id}`,
+    onSuccess: gamesSlice.actions.SET_GAME,
+    onFailure: gamesSlice.actions.SET_FETCH_ERROR,
+    label: fetchGameLabel
   });
 
 export const TOGGLE_IGNORE_GAME = id =>
