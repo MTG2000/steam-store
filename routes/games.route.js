@@ -52,4 +52,21 @@ router.post("/whitelist", async (req, res) => {
   res.send({ whitelisted });
 });
 
+router.post("/library", async (req, res) => {
+  let games = getGames();
+  let inLibrary = false;
+  games = games.map(game => {
+    if (game.id === +req.body.id) {
+      game.inLibrary = !game.inLibrary;
+      inLibrary = game.inLibrary;
+    }
+    return game;
+  });
+  await updateGames(games);
+
+  res.statusCode = 200;
+
+  res.send({ inLibrary });
+});
+
 module.exports = router;

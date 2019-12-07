@@ -54,6 +54,16 @@ const gamesSlice = createSlice({
         state.game.whitelisted = !state.game.whitelisted;
       }
     },
+    TOGGLE_LIBRARY: (state, action) => {
+      state.items.map(game => {
+        if (game.id === action.payload.id)
+          game.inLibrary = action.payload.inLibrary;
+        return game;
+      });
+      if (state.game.id === +action.payload.id) {
+        state.game.inLibrary = !state.game.inLibrary;
+      }
+    },
     SET_GAMES_VISIBILITY_FILTER: (state, action) => {
       state.visibilityFilter = action.payload;
     }
@@ -110,6 +120,14 @@ export const TOGGLE_WHITELIST_GAME = id =>
     method: "POST",
     data: { id },
     onSuccess: data => gamesSlice.actions.TOGGLE_WHITELIST({ ...data, id })
+  });
+
+export const TOGGLE_LIBRARY_GAME = id =>
+  apiAction({
+    url: "/api/games/library",
+    method: "POST",
+    data: { id },
+    onSuccess: data => gamesSlice.actions.TOGGLE_LIBRARY({ ...data, id })
   });
 
 const gamesReducer = gamesSlice.reducer;
