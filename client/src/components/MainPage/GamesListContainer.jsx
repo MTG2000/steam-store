@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
+import { gamesVisibilityFilters } from "../../store/reducers/gamesReducer";
 import {
   FETCH_GAMES,
   TOGGLE_IGNORE_GAME,
-  TOGGLE_WHITELIST_GAME,
-  gamesVisibilityFilters
-} from "../../store/reducers/gamesReducer";
+  TOGGLE_WHITELIST_GAME
+} from "../../store/actions/gamesActions";
 import GamesList from "./GamesList";
 
 const filterGames = (games, filter) => {

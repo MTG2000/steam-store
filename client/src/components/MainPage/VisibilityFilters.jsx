@@ -8,10 +8,8 @@ import {
 } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
-import {
-  gamesVisibilityFilters,
-  SET_GAMES_VISIBILITY_FILTER
-} from "../../store/reducers/gamesReducer";
+import { gamesVisibilityFilters } from "../../store/reducers/gamesReducer";
+import { SET_GAMES_VISIBILITY_FILTER } from "../../store/actions/gamesActions";
 import Filter from "./Filter";
 import { connect } from "react-redux";
 

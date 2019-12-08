@@ -3,18 +3,14 @@ import { Box, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import GameCard from "./GameCard";
 
-const GamesList = ({ games, TOGGLE_IGNORE_GAME, TOGGLE_WHITELIST_GAME }) => {
+const GamesList = ({ games }) => {
   return (
     <Box>
       <Grid container justify="center">
         {games.map(game => (
-          <Grid item key={game.id}>
+          <Grid item xs={12} key={game.id}>
             <Link to={`/games/${game.id}`} style={{ textDecoration: "none" }}>
-              <GameCard
-                game={game}
-                handleIgnore={() => TOGGLE_IGNORE_GAME(game.id)}
-                handleWhitelist={() => TOGGLE_WHITELIST_GAME(game.id)}
-              />
+              <GameCard game={game} />
             </Link>
           </Grid>
         ))}

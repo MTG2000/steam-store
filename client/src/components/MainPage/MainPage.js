@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Grid, Box } from "@material-ui/core";
 import GamesListContainer from "./GamesListContainer";
 import VisibilityFilters from "./VisibilityFilters";
-import GamesCarousel from "./GamesCarousel";
+import ErrorComponent from "../layouts/Error";
+import Loading from "../layouts/Loading";
+import { connect } from "react-redux";
+import { FETCH_GAMES } from "../../store/actions/gamesActions";
+import GamesCarouselContainer from "./GamesCarouselContainer";
 
-const MainPage = () => {
+const MainPage = ({ games, loading, error, FETCH_GAMES }) => {
+  useEffect(() => {
+    FETCH_GAMES();
+  }, [FETCH_GAMES]);
+
+  if (loading) return <Loading />;
+  if (error) return <ErrorComponent />;
+  if (games.length === 0) return <Loading />;
+
   return (
     <Container>
-      <GamesCarousel />
+      <GamesCarouselContainer />
       <Grid container justify="space-between" alignItems="flex-start">
         <Grid item xs={12} md={10}>
           <GamesListContainer />
@@ -21,4 +33,10 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+const mapStateToProps = state => ({
+  games: state.games.items,
+  loading: state.games.loading,
+  error: state.games.error
+});
+
+export default connect(mapStateToProps, { FETCH_GAMES })(MainPage);

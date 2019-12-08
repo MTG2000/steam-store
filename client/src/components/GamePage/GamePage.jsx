@@ -16,7 +16,7 @@ import {
   TOGGLE_WHITELIST_GAME,
   TOGGLE_IGNORE_GAME,
   TOGGLE_LIBRARY_GAME
-} from "../../store/reducers/gamesReducer";
+} from "../../store/actions/gamesActions";
 
 const useStyles = makeStyles({
   image: props => ({

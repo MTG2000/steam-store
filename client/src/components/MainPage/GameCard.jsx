@@ -64,7 +64,7 @@ const GameCard = props => {
           component="h6"
           gutterBottom
           className={classes.title}
-          color="textSecondary"
+          color="textPrimary"
         >
           {title}
         </Typography>
@@ -72,7 +72,7 @@ const GameCard = props => {
           variant="h6"
           component="h6"
           align="right"
-          color="textPrimary"
+          color="textSecondary"
         >
           {price} $
         </Typography>

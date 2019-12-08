@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/redux-toolkit";
-import { apiAction, API_START, API_END } from "../middlewares/apiMiddleware";
+import { API_START, API_END } from "../middlewares/apiMiddleware";
 
 export const gamesVisibilityFilters = {
   ALL: "all",
@@ -15,8 +15,8 @@ const initialState = {
   visibilityFilter: gamesVisibilityFilters.ALL
 };
 
-const fetchGamesLabel = "fetch-games-label";
-const fetchGameLabel = "fetch-game-label";
+export const fetchGamesLabel = "fetch-games-label";
+export const fetchGameLabel = "fetch-game-label";
 
 const gamesSlice = createSlice({
   name: "games",
@@ -40,7 +40,7 @@ const gamesSlice = createSlice({
           game.ignored = action.payload.ignored;
         return game;
       });
-      if (state.game.id === +action.payload.id) {
+      if (state.game && state.game.id === +action.payload.id) {
         state.game.ignored = !state.game.ignored;
       }
     },
@@ -50,7 +50,7 @@ const gamesSlice = createSlice({
           game.whitelisted = action.payload.whitelisted;
         return game;
       });
-      if (state.game.id === +action.payload.id) {
+      if (state.game && state.game.id === +action.payload.id) {
         state.game.whitelisted = !state.game.whitelisted;
       }
     },
@@ -60,7 +60,7 @@ const gamesSlice = createSlice({
           game.inLibrary = action.payload.inLibrary;
         return game;
       });
-      if (state.game.id === +action.payload.id) {
+      if (state.game && state.game.id === +action.payload.id) {
         state.game.inLibrary = !state.game.inLibrary;
       }
     },
@@ -90,48 +90,7 @@ const gamesSlice = createSlice({
   }
 });
 
-export const FETCH_GAMES = () =>
-  apiAction({
-    url: "/api/games",
-    onSuccess: gamesSlice.actions.SET_GAMES,
-    onFailure: gamesSlice.actions.SET_FETCH_ERROR,
-    label: fetchGamesLabel
-  });
-
-export const FETCH_GAME = id =>
-  apiAction({
-    url: `/api/games/${id}`,
-    onSuccess: gamesSlice.actions.SET_GAME,
-    onFailure: gamesSlice.actions.SET_FETCH_ERROR,
-    label: fetchGameLabel
-  });
-
-export const TOGGLE_IGNORE_GAME = id =>
-  apiAction({
-    url: "/api/games/ignore",
-    method: "POST",
-    data: { id },
-    onSuccess: data => gamesSlice.actions.TOGGLE_IGNORE({ ...data, id })
-  });
-
-export const TOGGLE_WHITELIST_GAME = id =>
-  apiAction({
-    url: "/api/games/whitelist",
-    method: "POST",
-    data: { id },
-    onSuccess: data => gamesSlice.actions.TOGGLE_WHITELIST({ ...data, id })
-  });
-
-export const TOGGLE_LIBRARY_GAME = id =>
-  apiAction({
-    url: "/api/games/library",
-    method: "POST",
-    data: { id },
-    onSuccess: data => gamesSlice.actions.TOGGLE_LIBRARY({ ...data, id })
-  });
+export const actions = gamesSlice.actions;
 
 const gamesReducer = gamesSlice.reducer;
-
 export default gamesReducer;
-
-export const { SET_GAMES_VISIBILITY_FILTER } = gamesSlice.actions;
