@@ -3,7 +3,10 @@ import { Container, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import Loading from "../layouts/Loading";
 import ErrorComponent from "../layouts/Error";
-import { FETCH_GAMES } from "../../store/actions/gamesActions";
+import {
+  FETCH_GAMES,
+  TOGGLE_LIBRARY_GAME
+} from "../../store/actions/gamesActions";
 import GamesList from "./GamesList";
 import { SET_ACTIVE_PAGE, appPages } from "../../store/reducers/appReducers";
 
@@ -12,7 +15,8 @@ const LibraryPage = ({
   loading,
   error,
   FETCH_GAMES,
-  SET_ACTIVE_PAGE
+  SET_ACTIVE_PAGE,
+  TOGGLE_LIBRARY_GAME
 }) => {
   document.title = "My Library";
 
@@ -42,7 +46,7 @@ const LibraryPage = ({
       <Typography variant="h3" component="h1" color="textPrimary" gutterBottom>
         Games You Own:
       </Typography>
-      <GamesList games={games} />
+      <GamesList games={games} removeGame={TOGGLE_LIBRARY_GAME} />
     </Container>
   );
 };
@@ -53,6 +57,8 @@ const mapStateToProps = state => ({
   error: state.games.error
 });
 
-export default connect(mapStateToProps, { FETCH_GAMES, SET_ACTIVE_PAGE })(
-  LibraryPage
-);
+export default connect(mapStateToProps, {
+  FETCH_GAMES,
+  SET_ACTIVE_PAGE,
+  TOGGLE_LIBRARY_GAME
+})(LibraryPage);

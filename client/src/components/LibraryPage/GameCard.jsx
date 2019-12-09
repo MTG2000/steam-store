@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardMedia,
@@ -10,60 +10,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
-
-// const useStyle = makeStyles({
-//   card: props => ({
-//     maxWidth: 900,
-//     margin: "20px 30px 0 0",
-//     position: "relative",
-
-//     background: props.palette.primary.dark,
-//     boxShadow: "3px 4px 10px #112"
-//   }),
-//   media: props => ({
-//     width: 120,
-//     height: 120,
-//     [props.breakpoints.up("sm")]: {
-//       width: 240,
-//       height: 240
-//     }
-//   }),
-//   content: props => ({
-//     flex: 10,
-//     // minWidth: 240,
-//     alignSelf: "center",
-//     display: "flex",
-//     flexWrap: "wrap",
-//     justifyContent: "space-between",
-//     alignItems: "center"
-//   }),
-//   title: props => ({
-//     flex: 3,
-//     [props.breakpoints.down("sm")]: {
-//       fontSize: "1.5rem"
-//     },
-//     "& a": {
-//       color: "#FFF"
-//     }
-//   }),
-//   downloadBtn: props => ({
-//     zIndex: 10,
-//     color: "#FFF",
-//     background: "#3c9353",
-//     display: "block",
-//     marginBottom: 10,
-//     [props.breakpoints.down("sm")]: {
-//       fontSize: "0.6rem"
-//     },
-//     "&:hover": {
-//       background: "#0e7d2b"
-//     }
-//   }),
-//   removeBtn: {
-//     color: "red",
-//     textAlign: "center"
-//   }
-// });
+import RemoveDialog from "./RemoveDialog";
 
 const useStyle = makeStyles({
   card: props => ({
@@ -120,6 +67,11 @@ const GameCard = props => {
   const { id, title, thumbnail } = props.game;
   const theme = useTheme();
   const classes = useStyle({ ...theme });
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const handleRemove = remove => {
+    if (remove) props.removeGame();
+    setDialogOpen(false);
+  };
 
   return (
     <Card className={classes.card}>
@@ -142,13 +94,23 @@ const GameCard = props => {
               </Button>
             </div>
             <div>
-              <Button className={classes.removeBtn} size="small">
+              <Button
+                className={classes.removeBtn}
+                size="small"
+                // onClick={handleRemove}
+                onClick={() => setDialogOpen(true)}
+              >
                 <Typography>Remove</Typography>
               </Button>
             </div>
           </div>
         </CardContent>
       </Grid>
+      <RemoveDialog
+        open={dialogOpen}
+        handleClose={handleRemove}
+        title={title}
+      />
     </Card>
   );
 };
