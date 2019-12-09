@@ -6,6 +6,7 @@ import { Switch, Route } from "react-router-dom";
 import GamePage from "./components/GamePage/GamePage";
 import { Box } from "@material-ui/core";
 import LibraryPage from "./components/LibraryPage/LibraryPage";
+import AboutPage from "./components/AboutPage/AboutPage";
 
 function App() {
   return (
@@ -15,8 +16,10 @@ function App() {
       <Switch>
         <Route path="/games/:id" component={GamePage} />
         <Route path="/library" component={LibraryPage} />
+        <Route path="/about" component={AboutPage} />
         <Route path="/" component={MainPage} />
       </Switch>
+      <Box py={6} />
       <Footer />
     </div>
   );

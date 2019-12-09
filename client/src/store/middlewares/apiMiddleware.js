@@ -37,7 +37,8 @@ export function apiAction({
   data = null,
   onSuccess = () => {},
   onFailure = null,
-  label = ""
+  label = "",
+  onSuccessMeta = {}
 }) {
   return {
     type: API,
@@ -47,7 +48,8 @@ export function apiAction({
       data,
       onSuccess,
       onFailure,
-      label
+      label,
+      onSuccessMeta
     }
   };
 }
@@ -69,6 +71,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
     onSuccess,
     onFailure,
     label,
+    onSuccessMeta,
     headers
   } = action.payload;
 
@@ -91,7 +94,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
       [dataOrParams]: data
     })
     .then(({ data }) => {
-      dispatch(onSuccess(data));
+      dispatch({ ...onSuccess(data), meta: onSuccessMeta });
     })
     .catch(error => {
       dispatch(apiError(error));

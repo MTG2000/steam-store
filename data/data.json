@@ -6,7 +6,6 @@
     "price": 59.99,
     "image": "https://www.primerplayer.com/wp-content/uploads/2017/02/The-Witcher-3-Wild-Hunt-Primer-Player.jpg",
     "description": "The Witcher: Wild Hunt is a story-driven open world RPG set in a visually stunning fantasy universe full of meaningful choices and impactful consequences. In The Witcher, you play as professional monster hunter Geralt of Rivia tasked with finding a child of prophecy in a vast open world rich with merchant cities, pirate islands, dangerous mountain passes, and forgotten caverns to explore.",
-    "whitelisted": true,
     "inLibrary": true
   },
   {
@@ -16,8 +15,8 @@
     "price": 19.99,
     "image": "https://i.ytimg.com/vi/EeoInup7JbM/maxresdefault.jpg",
     "description": "Darkwood provides a new perspective on survival horror.\n\n    Scavenge and explore the rich, ever-changing free-roam world by day, then hunker down in your hideout and pray for the morning light.\n    \n    Survival horror from a top-down perspective that is terrifying to play.\n    No hand holding or quest markers. Test your skills and figure things out on your own!\n    By day explore the randomly generated, ever-sinister woods, scavenge for materials, craft weapons and discover new secrets.\n    By night find shelter, barricade, set up traps and hide or defend yourself from the horrors that lurk in the dark.",
-    "ignored": false,
     "whitelisted": true,
+    "ignored": false,
     "inLibrary": true
   },
   {
@@ -34,9 +33,7 @@
     "thumbnail": "http://s01.riotpixels.net/data/7f/c3/7fc36a8d-56c4-401e-a62a-ee7d62100086.jpg/cover.soma.713x944.2014-04-22.7.jpg",
     "price": 29.99,
     "image": "https://arabhardware.net/wp-content/uploads/2015/06/maxresdefault-2.jpg",
-    "description": "Enter the world of SOMA and face horrors buried deep beneath the ocean waves. Delve through locked terminals and secret documents to uncover the truth behind the chaos. Seek out the last remaining inhabitants and take part in the events that will ultimately shape the fate of the station. But be careful, danger lurks in every corner: corrupted humans, twisted creatures, insane robots, and even an inscrutable omnipresent A.I.\n    You will need to figure out how to deal with each one of them. Just remember there’s no fighting back, either you outsmart your enemies or you get ready to run.",
-    "ignored": true,
-    "whitelisted": false
+    "description": "Enter the world of SOMA and face horrors buried deep beneath the ocean waves. Delve through locked terminals and secret documents to uncover the truth behind the chaos. Seek out the last remaining inhabitants and take part in the events that will ultimately shape the fate of the station. But be careful, danger lurks in every corner: corrupted humans, twisted creatures, insane robots, and even an inscrutable omnipresent A.I.\n    You will need to figure out how to deal with each one of them. Just remember there’s no fighting back, either you outsmart your enemies or you get ready to run."
   },
   {
     "id": 7,
@@ -60,8 +57,7 @@
     "thumbnail": "https://images.g2a.com/newlayout/323x433/1x1x0/3ece8b19866d/5968e72e5bafe36e347a8abc",
     "price": 29.99,
     "image": "",
-    "description": "",
-    "inLibrary": true
+    "description": ""
   },
   {
     "id": 12,

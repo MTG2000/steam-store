@@ -7,11 +7,17 @@ import Loading from "../layouts/Loading";
 import { connect } from "react-redux";
 import { FETCH_GAMES } from "../../store/actions/gamesActions";
 import GamesCarouselContainer from "./GamesCarouselContainer";
+import { SET_ACTIVE_PAGE, appPages } from "../../store/reducers/appReducers";
 
-const MainPage = ({ games, loading, error, FETCH_GAMES }) => {
+const MainPage = ({ games, loading, error, FETCH_GAMES, SET_ACTIVE_PAGE }) => {
+  document.title = "Steam Store";
+
   useEffect(() => {
     FETCH_GAMES();
   }, [FETCH_GAMES]);
+  useEffect(() => {
+    SET_ACTIVE_PAGE(appPages.store);
+  }, [SET_ACTIVE_PAGE]);
 
   if (loading) return <Loading />;
   if (error) return <ErrorComponent />;
@@ -39,4 +45,6 @@ const mapStateToProps = state => ({
   error: state.games.error
 });
 
-export default connect(mapStateToProps, { FETCH_GAMES })(MainPage);
+export default connect(mapStateToProps, { FETCH_GAMES, SET_ACTIVE_PAGE })(
+  MainPage
+);

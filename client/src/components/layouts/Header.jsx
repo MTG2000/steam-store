@@ -4,8 +4,12 @@ import "./Header.scss";
 
 import logo from "./steam.png";
 import { Typography } from "@material-ui/core";
+import { connect } from "react-redux";
+import { appPages } from "../../store/reducers/appReducers";
 
-const Header = () => {
+var classNames = require("classnames");
+
+const Header = ({ page }) => {
   useEffect(() => {
     (simplyNavDuty => {
       const sideNav = document.querySelector(".nav-list"),
@@ -88,6 +92,12 @@ const Header = () => {
     })();
   }, []);
 
+  const linkClasses = state =>
+    classNames({
+      link: true,
+      "-active": page === state
+    });
+
   return (
     <header className="nav-wrapper -sticky">
       <nav className="nav">
@@ -102,23 +112,18 @@ const Header = () => {
         <ul className="nav-list" role="navigation">
           <div className="list -left">
             <li className="item">
-              <Link className="link" to="/">
+              <Link className={linkClasses(appPages.store)} to="/">
                 <Typography variant="h6">Store</Typography>
               </Link>
             </li>
             <li className="item">
-              <Link className="link" to="/library">
+              <Link className={linkClasses(appPages.library)} to="/library">
                 <Typography variant="h6">Library</Typography>
               </Link>
             </li>
             <li className="item">
-              <Link className="link" to="/about">
+              <Link className={linkClasses(appPages.about)} to="/about">
                 <Typography variant="h6">About</Typography>
-              </Link>
-            </li>
-            <li className="item">
-              <Link className="link" to="/customer-service">
-                <Typography variant="h6">Customers Service</Typography>
               </Link>
             </li>
           </div>
@@ -130,5 +135,7 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;
+const mapStateToProps = state => ({
+  page: state.app.activePage
+});
+export default connect(mapStateToProps)(Header);

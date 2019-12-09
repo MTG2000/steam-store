@@ -14,7 +14,7 @@ router.get("/:id", (req, res) => {
 router.post("/new", async (req, res) => {
   const games = getGames();
   const newGame = req.body;
-  await updateGames([...games, newGame]);
+  // await updateGames([...games, newGame]);
   res.statusCode = 200;
   res.send({ success: true });
 });
@@ -22,51 +22,51 @@ router.post("/new", async (req, res) => {
 router.post("/ignore", async (req, res) => {
   let games = getGames();
   let ignored = false;
-  games = games.map(game => {
+  const newGames = games.map(game => {
     if (game.id === +req.body.id) {
       game.ignored = !game.ignored;
       ignored = game.ignored;
     }
     return game;
   });
-  await updateGames(games);
+  await updateGames(newGames);
 
   res.statusCode = 200;
-  res.send({ ignored });
+  res.send({ success: true });
 });
 
 router.post("/whitelist", async (req, res) => {
   let games = getGames();
   let whitelisted = false;
-  games = games.map(game => {
+  const newGames = games.map(game => {
     if (game.id === +req.body.id) {
       game.whitelisted = !game.whitelisted;
       whitelisted = game.whitelisted;
     }
     return game;
   });
-  await updateGames(games);
+  await updateGames(newGames);
 
   res.statusCode = 200;
 
-  res.send({ whitelisted });
+  res.send({ success: true });
 });
 
 router.post("/library", async (req, res) => {
   let games = getGames();
   let inLibrary = false;
-  games = games.map(game => {
+  const newGames = games.map(game => {
     if (game.id === +req.body.id) {
       game.inLibrary = !game.inLibrary;
       inLibrary = game.inLibrary;
     }
     return game;
   });
-  await updateGames(games);
+  await updateGames(newGames);
 
   res.statusCode = 200;
 
-  res.send({ inLibrary });
+  res.send({ success: true });
 });
 
 module.exports = router;

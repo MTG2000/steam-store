@@ -17,6 +17,7 @@ import {
   TOGGLE_IGNORE_GAME,
   TOGGLE_LIBRARY_GAME
 } from "../../store/actions/gamesActions";
+import { SET_ACTIVE_PAGE } from "../../store/reducers/appReducers";
 
 const useStyles = makeStyles({
   image: props => ({
@@ -38,8 +39,9 @@ const useStyles = makeStyles({
     "&:hover": {
       background: "#296b06"
     },
-    "&.disabled": {
-      background: "#245634"
+    "&:disabled": {
+      background: "#245634",
+      color: "#FFf"
       // pointerEvents: "none"
     }
   }
@@ -53,7 +55,8 @@ const GamePage = ({
   FETCH_GAME,
   TOGGLE_IGNORE_GAME,
   TOGGLE_WHITELIST_GAME,
-  TOGGLE_LIBRARY_GAME
+  TOGGLE_LIBRARY_GAME,
+  SET_ACTIVE_PAGE
 }) => {
   const { id } = match.params;
   const theme = useTheme();
@@ -66,10 +69,16 @@ const GamePage = ({
     setMounted(true);
   }, [FETCH_GAME, id]);
 
+  useEffect(() => {
+    SET_ACTIVE_PAGE("other");
+  }, [SET_ACTIVE_PAGE]);
+
   if (loading || !mounted) return <Loading />;
   if (error) return <ErrorComponent />;
 
   if (!game) return <Loading />;
+
+  document.title = game.title;
 
   return (
     <Container>
@@ -115,11 +124,10 @@ const GamePage = ({
             >
               <Button
                 variant="contained"
-                className={`${classes.addToLibraryBtn} ${
-                  game.inLibrary ? "disabled" : ""
-                }`}
+                className={classes.addToLibraryBtn}
                 size="large"
                 onClick={() => TOGGLE_LIBRARY_GAME(id)}
+                disabled={game.inLibrary}
               >
                 {game.inLibrary ? "In Library" : "Add To Library"}
               </Button>
@@ -154,5 +162,6 @@ export default connect(mapStateToProps, {
   FETCH_GAME,
   TOGGLE_IGNORE_GAME,
   TOGGLE_WHITELIST_GAME,
-  TOGGLE_LIBRARY_GAME
+  TOGGLE_LIBRARY_GAME,
+  SET_ACTIVE_PAGE
 })(GamePage);

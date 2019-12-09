@@ -1,6 +1,7 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/redux-toolkit";
 import gamesReducer from "./reducers/gamesReducer";
 import apiMiddleware from "./middlewares/apiMiddleware";
+import appReducer from "./reducers/appReducers";
 
 const defaultMiddlewars = getDefaultMiddleware({
   serializableCheck: false
@@ -9,7 +10,8 @@ const defaultMiddlewars = getDefaultMiddleware({
 const store = configureStore({
   middleware: [...defaultMiddlewars, apiMiddleware],
   reducer: {
-    games: gamesReducer
+    games: gamesReducer,
+    app: appReducer
   }
 });
 

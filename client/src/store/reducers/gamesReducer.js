@@ -36,8 +36,7 @@ const gamesSlice = createSlice({
     },
     TOGGLE_IGNORE: (state, action) => {
       state.items.map(game => {
-        if (game.id === action.payload.id)
-          game.ignored = action.payload.ignored;
+        if (game.id === action.payload.id) game.ignored = !game.ignored;
         return game;
       });
       if (state.game && state.game.id === +action.payload.id) {
@@ -46,8 +45,7 @@ const gamesSlice = createSlice({
     },
     TOGGLE_WHITELIST: (state, action) => {
       state.items.map(game => {
-        if (game.id === action.payload.id)
-          game.whitelisted = action.payload.whitelisted;
+        if (game.id === action.payload.id) game.whitelisted = !game.whitelisted;
         return game;
       });
       if (state.game && state.game.id === +action.payload.id) {

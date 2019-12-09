@@ -5,14 +5,27 @@ import Loading from "../layouts/Loading";
 import ErrorComponent from "../layouts/Error";
 import { FETCH_GAMES } from "../../store/actions/gamesActions";
 import GamesList from "./GamesList";
+import { SET_ACTIVE_PAGE, appPages } from "../../store/reducers/appReducers";
 
-const LibraryPage = ({ games, loading, error, FETCH_GAMES }) => {
+const LibraryPage = ({
+  games,
+  loading,
+  error,
+  FETCH_GAMES,
+  SET_ACTIVE_PAGE
+}) => {
+  document.title = "My Library";
+
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     FETCH_GAMES();
     setMounted(true);
   }, [FETCH_GAMES]);
+
+  useEffect(() => {
+    SET_ACTIVE_PAGE(appPages.library);
+  }, [SET_ACTIVE_PAGE]);
 
   if (loading || !mounted) return <Loading />;
   if (error) return <ErrorComponent />;
@@ -26,6 +39,9 @@ const LibraryPage = ({ games, loading, error, FETCH_GAMES }) => {
 
   return (
     <Container>
+      <Typography variant="h3" component="h1" color="textPrimary" gutterBottom>
+        Games You Own:
+      </Typography>
       <GamesList games={games} />
     </Container>
   );
@@ -37,4 +53,6 @@ const mapStateToProps = state => ({
   error: state.games.error
 });
 
-export default connect(mapStateToProps, { FETCH_GAMES })(LibraryPage);
+export default connect(mapStateToProps, { FETCH_GAMES, SET_ACTIVE_PAGE })(
+  LibraryPage
+);

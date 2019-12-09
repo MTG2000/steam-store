@@ -10,7 +10,8 @@ export const FETCH_GAMES = () =>
     url: "/api/games",
     onSuccess: actions.SET_GAMES,
     onFailure: actions.SET_FETCH_ERROR,
-    label: fetchGamesLabel
+    label: fetchGamesLabel,
+    onSuccessMeta: { saveGames: true, all: true }
   });
 
 export const FETCH_GAME = id =>
@@ -26,7 +27,8 @@ export const TOGGLE_IGNORE_GAME = id =>
     url: "/api/games/ignore",
     method: "POST",
     data: { id },
-    onSuccess: data => actions.TOGGLE_IGNORE({ ...data, id })
+    onSuccess: data => actions.TOGGLE_IGNORE({ ...data, id }),
+    onSuccessMeta: { saveGames: true }
   });
 
 export const TOGGLE_WHITELIST_GAME = id =>
