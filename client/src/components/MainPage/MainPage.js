@@ -28,7 +28,9 @@ const MainPage = ({ games, loading, error, FETCH_GAMES, SET_ACTIVE_PAGE }) => {
       <GamesCarouselContainer />
       <Grid container justify="space-between" alignItems="flex-start">
         <Grid item xs={12} md={10}>
-          <GamesListContainer />
+          <Box mb={5}>
+            <GamesListContainer />
+          </Box>
         </Grid>
         <Box mt={{ xs: 10 }} />
         <Grid item container justify="center" xs={12} md={2}>

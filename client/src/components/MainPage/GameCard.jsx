@@ -13,7 +13,7 @@ const useStyle = makeStyles({
   card: props => ({
     width: 270,
     height: 385,
-    margin: "20px 30px 0 0",
+    margin: "20px 15px 0 15px",
     position: "relative",
     background: props.palette.primary.main,
     boxShadow: "3px 4px 10px #112",
