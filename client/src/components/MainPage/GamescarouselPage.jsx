@@ -7,12 +7,18 @@ const useStyles = makeStyles({
     backgroundColor: props.palette.primary.main
   }),
   image: {
-    height: "70vh",
-    maxHeight: 700,
+    position: "relative",
+    background: "black",
+    width: "100%",
+    height: 0,
+    paddingTop: "56.25%",
     "& img": {
+      position: "absolute",
       width: "100%",
       height: "100%",
       objectFit: "cover",
+      top: 0,
+      left: 0,
       objectPosition: "center top"
     }
   }
@@ -22,15 +28,17 @@ const GamesCarouselPage = ({ title, img, description }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  description = description.slice(0, 220) + " ... ";
+  description = description.slice(0, 150) + " ... ";
 
   return (
     <Paper className={classes.paper}>
       <Grid container>
-        <Grid item xs={12} md={9} className={classes.image}>
-          <img src={img} alt={title} />
+        <Grid item xs={12} md={8}>
+          <div className={classes.image}>
+            <img src={img} alt={title} />
+          </div>
         </Grid>
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={4}>
           <Box px={2} py={2} pt={7}>
             <Typography variant="h4" component="h2" color="textPrimary">
               {title}
