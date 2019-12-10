@@ -13,7 +13,8 @@
     "thumbnail": "/assets/images/darkwood-mini.jpg",
     "price": 19.99,
     "image": "/assets/images/darkwood.jpg",
-    "description": "Darkwood provides a new perspective on survival horror.\n\n    Scavenge and explore the rich, ever-changing free-roam world by day, then hunker down in your hideout and pray for the morning light.\n    \n    Survival horror from a top-down perspective that is terrifying to play.\n    No hand holding or quest markers. Test your skills and figure things out on your own!\n    By day explore the randomly generated, ever-sinister woods, scavenge for materials, craft weapons and discover new secrets.\n    By night find shelter, barricade, set up traps and hide or defend yourself from the horrors that lurk in the dark."
+    "description": "Darkwood provides a new perspective on survival horror.\n\n    Scavenge and explore the rich, ever-changing free-roam world by day, then hunker down in your hideout and pray for the morning light.\n    \n    Survival horror from a top-down perspective that is terrifying to play.\n    No hand holding or quest markers. Test your skills and figure things out on your own!\n    By day explore the randomly generated, ever-sinister woods, scavenge for materials, craft weapons and discover new secrets.\n    By night find shelter, barricade, set up traps and hide or defend yourself from the horrors that lurk in the dark.",
+    "inLibrary": false
   },
   {
     "id": 5,

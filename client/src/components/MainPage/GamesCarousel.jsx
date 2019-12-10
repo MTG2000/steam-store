@@ -24,7 +24,7 @@ const GamesCarousel = ({ games }) => {
     <div className={classes.container}>
       <Slider
         dots
-        //autoplay={true}
+        autoplay={true}
         nextArrow={<NavigateNext style={arrowStyle} fontSize="large" />}
         prevArrow={<NavigateBefore style={arrowStyle} fontSize="large" />}
       >

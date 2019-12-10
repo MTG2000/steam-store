@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     background: "black",
     width: "100%",
     height: 0,
-    paddingTop: "56.25%",
+    paddingTop: "56.25%", //padding percentage is based of the width NOT the height
     "& img": {
       position: "absolute",
       width: "100%",

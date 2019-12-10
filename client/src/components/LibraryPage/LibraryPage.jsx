@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Typography } from "@material-ui/core";
+import { Container, Typography, Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import Loading from "../layouts/Loading";
 import ErrorComponent from "../layouts/Error";
@@ -36,9 +36,18 @@ const LibraryPage = ({
 
   if (games.length === 0)
     return (
-      <Typography variant="h3" component="h3" color="textPrimary">
-        You dont have any games in your library yet
-      </Typography>
+      <Container>
+        <Grid justify="center" style={{ minHeight: "100vh" }}>
+          <Typography
+            variant="h3"
+            component="h3"
+            color="textPrimary"
+            align="center"
+          >
+            You dont have any games in your library yet
+          </Typography>
+        </Grid>
+      </Container>
     );
 
   return (
